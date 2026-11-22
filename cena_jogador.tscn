@@ -1,0 +1,220 @@
+[gd_scene format=3 uid="uid://dko04rw3aw0qo"]
+
+[ext_resource type="Script" uid="uid://cy0iixbud3gru" path="res://script_personagem.gd" id="1_xgtec"]
+[ext_resource type="Texture2D" uid="uid://bkinislhctcij" path="res://Jogador.png" id="2_xgtec"]
+[ext_resource type="AudioStream" uid="uid://dncpdhw73cmvt" path="res://Sons/Pulando.mp3" id="3_e2p6x"]
+[ext_resource type="AudioStream" uid="uid://dd8qe8v4edhm4" path="res://Sons/Carrinho.mp3" id="4_63raq"]
+[ext_resource type="AudioStream" uid="uid://bv5b2m3f3x62h" path="res://Sons/Chutando_a_bola.mp3" id="5_5gxcy"]
+[ext_resource type="AudioStream" uid="uid://dl2v7d3o3j35n" path="res://Sons/Dano_jogador.mp3" id="6_ablbj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_64uw6"]
+size = Vector2(43, 118.5)
+
+[sub_resource type="Animation" id="Animation_skl0v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(100, 10, 80, 150)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_3qw1q"]
+resource_name = "carrinho"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(10, 626, 170, 150), Rect2(190, 626, 170, 150), Rect2(370, 626, 170, 150), Rect2(550, 626, 170, 150), Rect2(730, 626, 170, 150)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_otaft"]
+resource_name = "chutando"
+length = 0.3
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03, 0.07),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Rect2(10, 472, 124, 150), Rect2(144, 472, 124, 150), Rect2(278, 472, 124, 150)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.07),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawnar_bolar"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_e2p6x"]
+resource_name = "correndo"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(10, 164, 100, 150), Rect2(120, 164, 100, 150), Rect2(230, 164, 100, 150), Rect2(340, 164, 100, 150), Rect2(450, 164, 100, 150), Rect2(560, 164, 100, 150), Rect2(670, 164, 100, 150), Rect2(780, 164, 100, 150)]
+}
+
+[sub_resource type="Animation" id="Animation_63raq"]
+resource_name = "parado"
+length = 0.6
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Rect2(10, 10, 80, 150), Rect2(100, 10, 80, 150), Rect2(190, 10, 80, 150)]
+}
+
+[sub_resource type="Animation" id="Animation_5gxcy"]
+resource_name = "pulando"
+length = 1.2
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(10, 318, 100, 150), Rect2(120, 318, 100, 150), Rect2(230, 318, 100, 150), Rect2(340, 318, 100, 150), Rect2(450, 318, 100, 150), Rect2(560, 318, 100, 150)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ablbj"]
+_data = {
+&"RESET": SubResource("Animation_skl0v"),
+&"carrinho": SubResource("Animation_3qw1q"),
+&"chutando": SubResource("Animation_otaft"),
+&"correndo": SubResource("Animation_e2p6x"),
+&"parado": SubResource("Animation_63raq"),
+&"pulando": SubResource("Animation_5gxcy")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3r67k"]
+size = Vector2(113.99927, 56.101135)
+
+[node name="Jogador" type="Node2D" unique_id=297150345]
+position = Vector2(563, 329)
+
+[node name="Personagem" type="CharacterBody2D" parent="." unique_id=1443315958]
+position = Vector2(0, -1)
+collision_layer = 2
+script = ExtResource("1_xgtec")
+
+[node name="Sprite2D" type="Sprite2D" parent="Personagem" unique_id=1837001489]
+position = Vector2(2, 0)
+texture = ExtResource("2_xgtec")
+region_enabled = true
+region_rect = Rect2(100, 10, 80, 150)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Personagem" unique_id=352200697]
+position = Vector2(4.5, -2.25)
+shape = SubResource("RectangleShape2D_64uw6")
+
+[node name="Camera2D" type="Camera2D" parent="Personagem" unique_id=273569552]
+limit_left = 0
+limit_top = 0
+limit_right = 3024
+limit_bottom = 650
+
+[node name="Marker2D" type="Marker2D" parent="Personagem" unique_id=312183149]
+position = Vector2(77, 11)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Personagem" unique_id=1418428681]
+libraries/ = SubResource("AnimationLibrary_ablbj")
+
+[node name="Area2D" type="Area2D" parent="Personagem" unique_id=392950755]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Personagem/Area2D" unique_id=213009844]
+position = Vector2(2, 22)
+scale = Vector2(1.1403577, 1.245501)
+shape = SubResource("RectangleShape2D_3r67k")
+disabled = true
+
+[node name="AudioStreamPlayerPulando" type="AudioStreamPlayer" parent="Personagem" unique_id=1307002552]
+stream = ExtResource("3_e2p6x")
+
+[node name="AudioStreamPlayerCarrinho" type="AudioStreamPlayer" parent="Personagem" unique_id=1576527082]
+stream = ExtResource("4_63raq")
+
+[node name="AudioStreamPlayerChutandoBola" type="AudioStreamPlayer" parent="Personagem" unique_id=1095887976]
+stream = ExtResource("5_5gxcy")
+volume_db = 8.577
+
+[node name="AudioStreamPlayerDano" type="AudioStreamPlayer" parent="Personagem" unique_id=1218047140]
+stream = ExtResource("6_ablbj")
+volume_db = 6.433
+
+[connection signal="body_entered" from="Personagem/Area2D" to="Personagem" method="eliminar_inimigo"]

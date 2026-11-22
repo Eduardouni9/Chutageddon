@@ -1,0 +1,102 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://cenario_capital.png" id="1_08fst"]
+[ext_resource type="Texture2D" path="res://ceu_capital.png" id="9_ceu"]
+[ext_resource type="PackedScene" uid="uid://dko04rw3aw0qo" path="res://cena_jogador.tscn" id="2_5fdea"]
+[ext_resource type="PackedScene" uid="uid://4acqj7530toc" path="res://cena_inimigo1.tscn" id="3_v5pcj"]
+[ext_resource type="PackedScene" uid="uid://ba3i6ir4tmqf1" path="res://cena_inimigo2.tscn" id="4_2r50s"]
+[ext_resource type="PackedScene" uid="uid://c14782anqkwqw" path="res://cena_portao.tscn" id="4_b52ro"]
+[ext_resource type="PackedScene" path="res://cena_chefao2.tscn" id="5_j1lpk"]
+[ext_resource type="PackedScene" uid="uid://bf1en1f5dx4v5" path="res://cena_nuvem.tscn" id="6_6bdly"]
+[ext_resource type="PackedScene" uid="uid://cx4kdoraxx42g" path="res://cena_hud.tscn" id="6_08fst"]
+[ext_resource type="AudioStream" uid="uid://wmaw4xd7x4dy" path="res://Sons/Música_fase.mp3" id="8_4lqq5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_64uw6"]
+size = Vector2(101.75, 403)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3r67k"]
+size = Vector2(285, 138)
+
+[node name="Fase" type="Node2D" unique_id=934340607]
+position = Vector2(0, 6)
+
+[node name="Ceu" type="Sprite2D" parent="." unique_id=1900000001]
+z_index = -10
+position = Vector2(1512, 305)
+scale = Vector2(2, 2)
+texture = ExtResource("9_ceu")
+
+[node name="Neve" type="CPUParticles2D" parent="." unique_id=1900000011]
+z_index = 5
+position = Vector2(1512, -40)
+amount = 1100
+lifetime = 9.0
+preprocess = 9.0
+emission_shape = 3
+emission_rect_extents = Vector2(1700, 10)
+direction = Vector2(0.6, 1)
+spread = 12.0
+gravity = Vector2(24, 25)
+initial_velocity_min = 40.0
+initial_velocity_max = 70.0
+scale_amount_min = 2.0
+scale_amount_max = 4.5
+color = Color(1, 1, 1, 0.85)
+
+[node name="Nuvem" parent="." unique_id=365300541 instance=ExtResource("6_6bdly")]
+visible = false
+position = Vector2(395, 721)
+
+[node name="HUD" parent="." unique_id=1480817942 instance=ExtResource("6_08fst")]
+position = Vector2(48, 46)
+
+[node name="Cenario" type="StaticBody2D" parent="." unique_id=519029942]
+position = Vector2(583, 608)
+
+[node name="Sprite2D" type="Sprite2D" parent="Cenario" unique_id=855965258]
+position = Vector2(936, -203)
+texture = ExtResource("1_08fst")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Cenario" unique_id=1116216062]
+polygon = PackedVector2Array(-587, -1, 1037, -1, 1037, -96, 1056, -97, 1055, -148, 1095, -148, 1095, -200, 1136, -200, 1136, -148, 1176, -147, 1174, -103, 1190, -101, 1190, -50, 1527, -49, 1564, -3, 2457, 1, 2457, 45, -585, 41)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cenario" unique_id=1229518243]
+position = Vector2(-454.75, -160.5)
+shape = SubResource("RectangleShape2D_64uw6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Cenario" unique_id=24231904]
+position = Vector2(2382, -204)
+shape = SubResource("RectangleShape2D_64uw6")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Cenario" unique_id=730386540]
+position = Vector2(1927.5, -72)
+shape = SubResource("RectangleShape2D_3r67k")
+one_way_collision = true
+
+[node name="Portao" parent="." unique_id=116592545 instance=ExtResource("4_b52ro")]
+position = Vector2(2868, 516)
+scale = Vector2(0.3995943, 0.45910475)
+
+[node name="Jogador" parent="." unique_id=297150345 instance=ExtResource("2_5fdea")]
+position = Vector2(117, 151)
+
+[node name="Inimigo2" parent="." unique_id=879218546 instance=ExtResource("4_2r50s")]
+position = Vector2(700, 547)
+
+[node name="Inimigo1" parent="." unique_id=706790748 instance=ExtResource("3_v5pcj")]
+position = Vector2(1150, 553)
+
+[node name="Inimigo1b" parent="." unique_id=1900000002 instance=ExtResource("3_v5pcj")]
+position = Vector2(1950, 503)
+
+[node name="Inimigo2b" parent="." unique_id=1900000003 instance=ExtResource("4_2r50s")]
+position = Vector2(2250, 547)
+
+[node name="Chefao" parent="." unique_id=171596232 instance=ExtResource("5_j1lpk")]
+position = Vector2(2756, 511)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=538659103]
+stream = ExtResource("8_4lqq5")
+volume_db = -8.607
+pitch_scale = 1.08
+autoplay = true
